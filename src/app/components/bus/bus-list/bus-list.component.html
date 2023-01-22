@@ -1,0 +1,37 @@
+<div class="container m-5">
+    <h2> LIST OF BUS</h2>
+    <table class="table table-striped m-5">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>IMAGE</th>
+                <th>NAME</th>
+                <th>TICKET FARE</th>
+                <th>FROM</th>
+                <th>TO</th>
+                <th>TOTAL SEATS</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bus of allBus">
+                <td>{{ bus.id }}</td>
+                <td><img [src]="bus.busImageUrl" width="100px" height="80px"></td>
+                <td>{{ bus.busName }}</td>
+                <td>Rs. {{ bus.busTicketFare }}</td>
+                <td>
+                    <span *ngFor="let city of allCities">
+                        <span *ngIf="city.id==bus.busFromId">{{ city.cityName }}</span>
+                    </span>    
+                </td>
+                <td>
+                    <span *ngFor="let city of allCities">
+                        <span *ngIf="city.id==bus.busToId">{{ city.cityName }}</span>
+                    </span>    
+                </td>
+                <td>{{ bus.busTotalSeats }}</td>
+                <td><button type="button" class="btn btn-warning" (click)="goToViewBus(bus.id)">VIEW BUS</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
